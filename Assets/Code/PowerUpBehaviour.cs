@@ -39,7 +39,7 @@ public class PowerUpBehaviour : MonoBehaviour
 				player.healthBar.value += 50;
 			}
 			else if (type == PowerUpType.Ammo) {
-				PlayerBehaviour.ammo += 5;
+				PlayerBehaviour.Pistolammo += 5;
 			}
 
 			Destroy(this.gameObject);

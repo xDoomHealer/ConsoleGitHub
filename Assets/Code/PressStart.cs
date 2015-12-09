@@ -131,6 +131,9 @@ public class PressStart : MonoBehaviour {
                        // Debug.Log("Enter 4th option");                        
                         screen = States.Credits;
                         break;
+                    case 5:
+                        Application.Quit ();
+                        break;
                 }
             }
         }

@@ -7,15 +7,22 @@ public class PlayerBehaviour : MonoBehaviour {
 
 	public Slider healthBar;
 	public Text AmmoText;
-	public static int ammo;
+    public Text GunText;
+	public static int Pistolammo;
+    public static int ShotGunAmmo;
+
+
+    public static bool ShotGunOn;
 	
 	public static GameObject[] enemyList;
 	
 	// Use this for initialization
 	void Start () {
+        ShotGunOn = false;
 		healthBar.maxValue = 250;
 		healthBar.value = healthBar.maxValue;
-		ammo = 10;
+		Pistolammo = 10;
+        ShotGunAmmo = 5;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +33,16 @@ public class PlayerBehaviour : MonoBehaviour {
 		} else if (healthBar.value > healthBar.maxValue)
 			healthBar.value = healthBar.maxValue;
 
-		AmmoText.text = "Ammo:" + ammo;
+        if (ShotGunOn)
+        {
+            GunText.text = "Gun:ShotGun";
+            AmmoText.text = "Ammo:" + ShotGunAmmo;
+        }
+        else
+        {
+            GunText.text = "Gun:Pistol";
+            AmmoText.text = "Ammo:" + Pistolammo;
+        }
 	}
 	
 	 void OnCollisionEnter(Collision other){

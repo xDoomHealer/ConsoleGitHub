@@ -4,7 +4,7 @@ using System.Collections;
 public static class AudioSettings 
 {
     static float MusicVolume, SoundVolume;
-
+    static public bool Running;
     
     static AudioSettings()
     {

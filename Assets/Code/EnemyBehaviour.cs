@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class EnemyBehaviour : AIPath {
@@ -7,9 +8,11 @@ public class EnemyBehaviour : AIPath {
 	public GameObject bulletPrefab;
 	private GameObject _currentTarget;
 	private float bulletTimer;
+    private float health;
+    public Slider healthbar;
 	
 	void Start () {
-		
+        health = 100;
 		_currentTarget  = GameObject.Find("Player");
 		if(_currentTarget!=null){
 
@@ -21,6 +24,9 @@ public class EnemyBehaviour : AIPath {
 	}
 	
    	void Update () {
+        //Makes it so that the healthbar is always facing the camera
+        healthbar.transform.rotation = Camera.main.transform.rotation;
+
 		bulletTimer+=Time.deltaTime;
 
         if (_currentTarget != null && _currentTarget.active){
@@ -40,6 +46,17 @@ public class EnemyBehaviour : AIPath {
 			
 		}
 	}
+
+    //Called when enemy get's hit
+    void Hit(int damage)
+    {
+        health -= damage;
+        healthbar.value = health;
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 	
 	void shoot(Vector3 pos){
 
