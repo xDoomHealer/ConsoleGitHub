@@ -22,9 +22,9 @@ public class CrosshairScript : MonoBehaviour {
 		sound = GetComponent<AudioSource> ();
 		sound.volume = AudioSettings.getSoundVol ();
         
-		Cursor.SetCursor (crosshairImage, hotspot, CursorMode.ForceSoftware);
+		//Cursor.SetCursor (crosshairImage, hotspot, CursorMode.ForceSoftware);
 		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = true;
+		Cursor.visible = false;
 	}
 
 	void Update () {
@@ -34,7 +34,7 @@ public class CrosshairScript : MonoBehaviour {
             {
                 AudioSettings.Running = false;
                 PauseUI.SetActive(true);
-                Time.timeScale = 0.0f;
+                //Time.timeScale = 0.0f;
                 //Application.Quit ();
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -68,7 +68,7 @@ public class CrosshairScript : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0) && PlayerBehaviour.Pistolammo > 0)
         {
-            sound.PlayOneShot(gunShot);
+            sound.PlayOneShot(gunShot, AudioSettings.getSoundVol() / 100);
             PlayerBehaviour.Pistolammo--;
            // ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawRay(Camera.main.transform.position,ray.direction,Color.blue,4);

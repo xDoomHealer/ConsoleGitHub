@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	public Slider healthBar;
 	public Text AmmoText;
     public Text GunText;
+	public Text enemiesLeft;
 	public static int Pistolammo;
     public static int ShotGunAmmo;
 
@@ -21,17 +22,20 @@ public class PlayerBehaviour : MonoBehaviour {
         ShotGunOn = false;
 		healthBar.maxValue = 250;
 		healthBar.value = healthBar.maxValue;
-		Pistolammo = 10;
-        ShotGunAmmo = 5;
+		Pistolammo = 20;
+        ShotGunAmmo = 10;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		enemyList = GameObject.FindGameObjectsWithTag ("Enemy");
+
 		if (healthBar.value <= 0) {
 			Application.LoadLevel ("Title");
 		} else if (healthBar.value > healthBar.maxValue)
 			healthBar.value = healthBar.maxValue;
+
+		enemiesLeft.text = "Enemies Left: " + enemyList.Length;
 
         if (ShotGunOn)
         {
@@ -47,11 +51,6 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	 void OnCollisionEnter(Collision other){
 
-		if (other.gameObject.tag == "bullet"){
-			//decrease health
-			Destroy(other.gameObject);
-			healthBar.value  -=  20;
-		}
 		
 	}
 }

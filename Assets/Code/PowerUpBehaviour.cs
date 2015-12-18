@@ -12,7 +12,6 @@ public class PowerUpBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		Random.seed = (int)System.DateTime.Now.Ticks;
 		int randomNumber = Random.Range (0, 2);
 		switch (randomNumber) {
 		case 0: type = PowerUpType.Health;
@@ -28,7 +27,9 @@ public class PowerUpBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up, 60f * Time.deltaTime);
+		if (AudioSettings.Running) {
+			transform.Rotate (Vector3.up, 60f * Time.deltaTime);
+		}
     }
 
 	void OnTriggerEnter (Collider other) {

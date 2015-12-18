@@ -2,48 +2,60 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class EnemyBehaviour : AIPath {
+public class EnemyBehaviour : MonoBehaviour {
 	
 	// Use this for initialization
+	public Animator anim;
 	public GameObject bulletPrefab;
 	private GameObject _currentTarget;
+	private NavMeshAgent agent;
 	private float bulletTimer;
     private float health;
-    public Slider healthbar;
 	
 	void Start () {
         health = 100;
 		_currentTarget  = GameObject.Find("Player");
-		if(_currentTarget!=null){
-
-			target = _currentTarget.transform;
-		}
-
-		base.Start ();
+		agent = GetComponent<NavMeshAgent> ();
+		anim = GetComponent<Animator> ();
 
 	}
 	
    	void Update () {
-        //Makes it so that the healthbar is always facing the camera
-        healthbar.transform.rotation = Camera.main.transform.rotation;
+		if (AudioSettings.Running) {
 
-		bulletTimer+=Time.deltaTime;
 
-        if (_currentTarget != null && _currentTarget.active){
+			bulletTimer += Time.deltaTime;
+
+			agent.SetDestination(_currentTarget.transform.position);
+
+			if (_currentTarget != null && _currentTarget.active) {
 			
-			//set target for ai path script
-			target = _currentTarget.transform;
-			
-			//shoot if dance is less than 10
-			if (Vector3.Distance(transform.position, _currentTarget.transform.position) <= 5 ){
+				//shoot if dance is less than 10
+				if (Vector3.Distance (transform.position, _currentTarget.transform.position) <= 3) {
 				
-				if(bulletTimer > 2){
+					anim.SetBool("attack", true);
+					anim.SetBool("running",false);
+					anim.SetBool("idling", false);
+					if (bulletTimer > 2) {
 					
-					shoot(_currentTarget.transform.position);
-					bulletTimer = 0;
+						shoot (_currentTarget.transform.position);
+						bulletTimer = 0;
+					}
 				}
-			}
+
+				else {
+					anim.SetBool("attack", false);
+					anim.SetBool("running",true);
+					anim.SetBool("idling", false);
+				}
 			
+			}
+		} 
+		else {
+			agent.Stop();
+			anim.SetBool("attack", false);
+			anim.SetBool("running",false);
+			anim.SetBool("idling", true);
 		}
 	}
 
@@ -51,7 +63,6 @@ public class EnemyBehaviour : AIPath {
     void Hit(int damage)
     {
         health -= damage;
-        healthbar.value = health;
         if (health <= 0)
         {
             Destroy(this.gameObject);
@@ -59,9 +70,15 @@ public class EnemyBehaviour : AIPath {
     }
 	
 	void shoot(Vector3 pos){
-
-		GameObject bulletObject = Object.Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		bulletObject.GetComponent<BulletBehaviour>().Initialize(transform.position, true, Color.red,_currentTarget.transform.position+new Vector3(0,1,0));
+		Vector3 direction = _currentTarget.transform.position - this.transform.position;
+		Ray ray = new Ray (this.transform.position, direction);
+		RaycastHit hit;
+		if (Physics.Raycast (ray, out hit)) {
+			if (hit.transform.tag == "Player") {
+				PlayerBehaviour p = _currentTarget.GetComponent<PlayerBehaviour>();
+				p.healthBar.value -= 20;
+			}
+		}
 		
 	}
 }

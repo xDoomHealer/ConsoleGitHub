@@ -55,12 +55,14 @@ public class PauseUIController : MonoBehaviour {
                     case 0:
                         Debug.Log("0");
                         AudioSettings.Running = true;
-                        Time.timeScale = 1.0f;
+                    //    Time.timeScale = 1.0f;
                         this.gameObject.SetActive(false);
 
                         break;
                     case 1:
                         Debug.Log("1");
+					//	Time.timeScale = 1.0f;
+						AudioSettings.Running = true;
                         Application.LoadLevel("Title");
                         break;
                     case 2:

@@ -190,8 +190,8 @@ ModelImporter:
     13700000: armor
     13700002: body
   materials:
-    importMaterials: 0
-    materialName: 0
+    importMaterials: 1
+    materialName: 2
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -2275,7 +2275,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

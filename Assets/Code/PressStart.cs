@@ -30,13 +30,15 @@ public class PressStart : MonoBehaviour {
 	void Start () {
         //SoundSettings.gameObject.transform.Find("SoundSettings").GetComponent<SoundSettings>();
        // AudioControl = GameObject.Find("AudioSettings").GetComponent<AudioSettings>();
-       
+		SettingSliders.transform.GetChild(0).GetComponent<Slider>().value = AudioSettings.getSoundVol();
+		SettingSliders.transform.GetChild(1).GetComponent<Slider>().value = AudioSettings.getMusicVol();
         screen = States.Start;
        // MenuButtons.SetActive(false);
       //  Settings.SetActive(false);
         MenuButtonChosen = 0;
         MaxMenuButtons = MenuButtons.transform.childCount-1;
         MaxSettingButtons = Settings.transform.childCount - 1;
+		Cursor.lockState = CursorLockMode.None;
         Debug.Log(SettingSliders.transform.GetChild(0).name);
 	}
 	

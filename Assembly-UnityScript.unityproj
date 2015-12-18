@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{0AE7B521-7871-0775-1076-E4EF5E79C617}</ProjectGuid>
+	<ProjectGuid>{E9861619-AA52-F68B-3535-FF28759FFE3E}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-UnityScript</AssemblyName>
@@ -68,6 +68,15 @@
      <Compile Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\Tonemapping.js" />
      <Compile Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\Triangles.js" />
      <Compile Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\Vignetting.js" />
+     <Compile Include="Assets\Monster\scripts\attacksounds.js" />
+     <Compile Include="Assets\Monster\scripts\breakable.js" />
+     <Compile Include="Assets\Monster\scripts\breakparts.js" />
+     <Compile Include="Assets\Monster\scripts\cameraRoot.js" />
+     <Compile Include="Assets\Monster\scripts\footsounds.js" />
+     <Compile Include="Assets\Monster\scripts\mace.js" />
+     <Compile Include="Assets\Monster\scripts\monstercontroller.js" />
+     <Compile Include="Assets\Monster\scripts\playrandomsound.js" />
+     <Compile Include="Assets\Monster\scripts\wait&amp;destroy.js" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
@@ -91,6 +100,7 @@
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\FisheyeShader.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Monster\shaders\bumpSpecmap.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
@@ -114,6 +124,7 @@
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlurEffectConeTaps.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\DLAA.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Monster\shaders\monsterShader.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionEffect.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GrayscaleEffect.shader" />
      <None Include="Assets\Content\Stuff\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SepiaToneEffect.shader" />
@@ -154,10 +165,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Users/Bryan/Desktop/IceGame_v3_powerups (1)/IceGame/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/Bryan/Documents/GitHub/ConsoleGitHub/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>C:/Users/Bryan/Desktop/IceGame_v3_powerups (1)/IceGame/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/Bryan/Documents/GitHub/ConsoleGitHub/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
@@ -168,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8138C40A-65F7-0655-C98B-D259BBDC6D04}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{D40BBA4F-28B0-0847-12E5-ED0F4CD79F23}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
